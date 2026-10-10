@@ -2,6 +2,7 @@
 
 import { MobileBackButton } from '@/components/app/app-shell';
 import { CardGrid, ChannelCard } from '@/components/app/cards';
+import { Markdown } from '@/components/app/markdown';
 import { Avatar } from '@/components/app/poster';
 import { EmptyState, PillLink, Spinner } from '@/components/app/primitives';
 import { useDominantColor } from '@/lib/client/colors';
@@ -58,7 +59,7 @@ function UserPage({ data }: { data: UserResponse }) {
             </PillLink>
           )}
         </div>
-        {user.bio && <p className="max-w-3xl whitespace-pre-line px-4 pb-6 text-pal-subdued md:px-6">{user.bio}</p>}
+        {user.bio && <Markdown text={user.bio} compact className="max-w-3xl px-4 pb-6 text-pal-subdued md:px-6" />}
 
         <h2 className="mb-2 px-4 text-2xl font-bold tracking-tight md:px-6">Channels</h2>
         {channels.length ? (

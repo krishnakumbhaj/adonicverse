@@ -75,6 +75,7 @@ export function ChannelForm({
         maxLength={1000}
         placeholder="What kind of stories will readers find here?"
         onChange={(event) => setForm({ ...form, description: event.target.value })}
+        hint="Markdown works: **bold**, *italic*, - lists, [links](https://…)."
         error={errors?.description?.[0]}
       />
       <div className="flex gap-2">

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { dbConnect } from '@/lib/db';
+import { markdownToPlainText } from '@/lib/markdown';
 import ChannelModel, { type IChannel } from '@/models/Channel';
 import ChannelView from './channel-view';
 
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!channel) return { title: 'Channel' };
     return {
       title: channel.name,
-      description: channel.description.slice(0, 160) || undefined,
+      description: markdownToPlainText(channel.description).slice(0, 160) || undefined,
       openGraph: { title: channel.name, images: channel.avatar ? [channel.avatar.url] : undefined },
     };
   } catch {

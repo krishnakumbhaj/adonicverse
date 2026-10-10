@@ -127,7 +127,7 @@ function ProfileSection({ account, onSaved }: { account: Account; onSaved: (user
           value={form.bio}
           maxLength={300}
           onChange={(event) => setForm({ ...form, bio: event.target.value })}
-          hint={`${form.bio.length}/300`}
+          hint={`Markdown works: **bold**, *italic*, [links](https://…). ${form.bio.length}/300`}
           error={fieldError(fields, 'bio')}
         />
         <PillButton type="submit" icon={<Check />} loading={saving}>

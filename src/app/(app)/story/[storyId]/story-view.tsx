@@ -8,6 +8,7 @@ import { MobileBackButton } from '@/components/app/app-shell';
 import { ReadCircle, ReadingBars } from '@/components/app/cards';
 import { genreName } from '@/components/app/genre-art';
 import { useMainScrollTop } from '@/components/app/main-scroll';
+import { Markdown } from '@/components/app/markdown';
 import { MoreMenu } from '@/components/app/menu';
 import { Avatar, Poster } from '@/components/app/poster';
 import { Badge, Chip, ChipRow, cx, EmptyState, PillLink, Spinner } from '@/components/app/primitives';
@@ -19,6 +20,7 @@ import { useDominantColor } from '@/lib/client/colors';
 import { compactNumber, plural, shortDate, storyKind } from '@/lib/client/format';
 import { useApi, useRequireSignIn, useRevalidate } from '@/lib/client/hooks';
 import type { ChannelResponse, Episode, StoryResponse, TableOfContents } from '@/lib/client/types';
+import { markdownToPlainText } from '@/lib/markdown';
 import StoryReviews from './story-reviews';
 
 export default function StoryView({ storyId }: { storyId: string }) {
@@ -100,7 +102,7 @@ function StoryPage({ data, toc, refresh }: { data: StoryResponse; toc?: TableOfC
             </h1>
             {story.synopsis && (
               <div className="mt-3 hidden md:block">
-                <p className="line-clamp-2 max-w-3xl text-sm text-white/70">{story.synopsis}</p>
+                <p className="line-clamp-2 max-w-3xl text-sm text-white/70">{markdownToPlainText(story.synopsis)}</p>
               </div>
             )}
             <div className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm">
@@ -312,7 +314,7 @@ function About({ data }: { data: StoryResponse }) {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <div className="rounded-lg bg-white/[.07] p-5">
           {story.synopsis ? (
-            <p className="whitespace-pre-line leading-relaxed">{story.synopsis}</p>
+            <Markdown text={story.synopsis} className="leading-relaxed" />
           ) : (
             <p className="text-pal-subdued">No synopsis yet.</p>
           )}

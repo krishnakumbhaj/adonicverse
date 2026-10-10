@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { dbConnect } from '@/lib/db';
+import { markdownToPlainText } from '@/lib/markdown';
 import StoryModel, { type IStory } from '@/models/Story';
 import StoryView from './story-view';
 
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       .select('title synopsis poster')
       .lean<Pick<IStory, 'title' | 'synopsis' | 'poster'>>();
     if (!story) return { title: 'Story' };
-    const description = story.synopsis.slice(0, 160) || undefined;
+    const description = markdownToPlainText(story.synopsis).slice(0, 160) || undefined;
     return {
       title: story.title,
       description,

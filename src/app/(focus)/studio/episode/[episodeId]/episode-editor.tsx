@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { Badge, cx, EmptyState, PillButton, PillLink, Spinner } from '@/components/app/primitives';
 import { useToast } from '@/components/app/toast';
+import { MarkdownShortcuts } from '@/components/studio/markdown-shortcuts';
 import { api, errorMessage } from '@/lib/client/api';
 import { plural } from '@/lib/client/format';
 import { useApi, useRevalidate } from '@/lib/client/hooks';
@@ -87,6 +88,7 @@ function Writer({ data, refresh }: { data: ReadingResponse; refresh: () => void 
         codeBlock: false,
         link: { openOnClick: false, autolink: true },
       }),
+      MarkdownShortcuts,
     ],
     content: data.episode.content,
     immediatelyRender: false,

@@ -103,7 +103,7 @@ export function StoryFields({
         maxLength={2000}
         rows={5}
         onChange={(event) => set('synopsis', event.target.value)}
-        hint={`What's it about? Hook your readers. ${values.synopsis.length}/2000`}
+        hint={`What's it about? Hook your readers. Markdown works: **bold**, *italic*, - lists. ${values.synopsis.length}/2000`}
         error={error('synopsis')}
       />
 

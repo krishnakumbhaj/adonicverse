@@ -7,6 +7,7 @@ import { BadgeCheck } from 'lucide-react';
 import { MobileBackButton } from '@/components/app/app-shell';
 import { ReadCircle } from '@/components/app/cards';
 import { useMainScrollTop } from '@/components/app/main-scroll';
+import { Markdown } from '@/components/app/markdown';
 import { MoreMenu } from '@/components/app/menu';
 import { PagedStoryGrid } from '@/components/app/paged-grid';
 import { Avatar, Poster } from '@/components/app/poster';
@@ -176,7 +177,7 @@ function ChannelPage({ data }: { data: ChannelResponse }) {
           <h2 className="mb-3 text-2xl font-bold tracking-tight">About</h2>
           <div className="max-w-3xl rounded-lg bg-white/[.07] p-5">
             {channel.description ? (
-              <p className="whitespace-pre-line leading-relaxed">{channel.description}</p>
+              <Markdown text={channel.description} className="leading-relaxed" />
             ) : (
               <p className="text-pal-subdued">This channel hasn&apos;t added a description yet.</p>
             )}

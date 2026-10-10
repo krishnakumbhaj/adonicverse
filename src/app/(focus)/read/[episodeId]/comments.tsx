@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Check, ChevronDown, ChevronUp, SendHorizontal } from 'lucide-react';
 import { useConfirm } from '@/components/app/confirm';
+import { Markdown } from '@/components/app/markdown';
 import { MoreMenu } from '@/components/app/menu';
 import { LoadMore } from '@/components/app/paged-grid';
 import { Avatar } from '@/components/app/poster';
@@ -296,7 +297,7 @@ function CommentItem({
             </div>
           </div>
         ) : (
-          <p className="mt-1 whitespace-pre-wrap break-words text-[15px] leading-relaxed">{body}</p>
+          <Markdown text={body} compact className="mt-1 text-[15px] leading-relaxed" />
         )}
 
         {!isReply && user && !editing && (

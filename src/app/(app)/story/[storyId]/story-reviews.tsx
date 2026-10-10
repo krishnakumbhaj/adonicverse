@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useConfirm } from '@/components/app/confirm';
+import { Markdown } from '@/components/app/markdown';
 import { LoadMore } from '@/components/app/paged-grid';
 import { Avatar } from '@/components/app/poster';
 import { PillButton } from '@/components/app/primitives';
@@ -104,7 +105,7 @@ export default function StoryReviews({
                     </button>
                   )}
                 </div>
-                {review.body && <p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{review.body}</p>}
+                {review.body && <Markdown text={review.body} compact className="mt-2 text-sm leading-relaxed" />}
               </li>
             ))}
           </ul>
