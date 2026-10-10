@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Theme: Neon Orchid (chosen on /palettes). The app is dark-only, like Spotify.
+ * Fonts are set in src/app/layout.tsx (chosen on /fonts).
+ * --p-* are the palette tokens behind the `pal-*` Tailwind colors (see src/app/palettes/palettes.ts).
+ * The HSL tokens below them are the same colors for shadcn/ui components.
+ */
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    --p-base: #000000;
+    --p-surface: #121212;
+    --p-elevated: #1f1f1f;
+    --p-highlight: #2a2a2a;
+    --p-border: #292929;
+    --p-text: #ffffff;
+    --p-subdued: #b3b3b3;
+    --p-muted: #7a7a7a;
+    --p-primary: #d16bff;
+    --p-primary-hover: #c050f2; /* darker on hover, so the white text stays readable */
+    --p-on-primary: #ffffff;
+    --p-accent: #d16bff;
+    --p-hero: #5f2777;
+    --p-rating: #fbbf24;
+    --p-success: #4ade80;
+    --p-warning: #fbbf24;
+    --p-danger: #f87171;
+
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 16%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 281 100% 71%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 16.5%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 91% 71%;
+    --destructive-foreground: 0 0% 0%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 281 100% 71%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  /* Spotify-like overlay scrollbar for the panels. */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255 255 255 / 0.3) transparent;
+  }
+}
+
+/* Story and episode text (sanitized HTML from the editor), read in the reading font. */
+@layer components {
+  .story-content {
+    @apply font-reading;
+    color: color-mix(in srgb, var(--p-text) 88%, var(--p-surface));
+    overflow-wrap: break-word;
+  }
+  .story-content > * + * {
+    margin-top: 1em;
+  }
+  .story-content h2,
+  .story-content h3,
+  .story-content h4 {
+    @apply font-bold leading-tight text-pal-text;
+    margin-top: 1.6em;
+  }
+  .story-content h2 {
+    font-size: 1.5em;
+  }
+  .story-content h3 {
+    font-size: 1.25em;
+  }
+  .story-content h4 {
+    font-size: 1.1em;
+  }
+  .story-content blockquote {
+    @apply border-l-4 border-pal-primary pl-4 italic;
+  }
+  .story-content ul {
+    @apply list-disc pl-6;
+  }
+  .story-content ol {
+    @apply list-decimal pl-6;
+  }
+  .story-content hr {
+    @apply mx-auto my-8 w-24 border-pal-muted;
+  }
+  .story-content a {
+    @apply text-pal-accent underline underline-offset-2;
+  }
+}

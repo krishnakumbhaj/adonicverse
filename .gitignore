@@ -1,0 +1,40 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next
+/.next-*
+/out
+next-env.d.ts
+*.tsbuildinfo
+
+# secrets — never commit these (.env.example is the template, and is committed)
+.env
+.env.*
+!.env.example
+*.pem
+
+# images saved by the local storage driver, and import previews
+/.uploads*
+/.import-preview
+/.import-cache
+
+# deploy and test output
+/.vercel
+/coverage
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editors and operating systems
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+
+# Claude Code's personal settings for this machine
+/.claude/settings.local.json
